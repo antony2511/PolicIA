@@ -84,13 +84,14 @@
 git clone https://github.com/antony2511/PolicIA.git
 cd PolicIA
 
+# Los PDFs YA vienen incluidos en el repositorio ✅
+# Verifica que estén:
+ls -lh backend/data/legislacion/
+
 # Configurar .env (copiar credenciales)
 cd backend
 nano .env
-
-# Copiar PDFs de legislación
-# (tienes 3 PDFs en tu máquina local: backend/data/legislacion/)
-scp backend/data/legislacion/*.pdf usuario@servidor:/ruta/PolicIA/backend/data/legislacion/
+# Pegar: FIREBASE_PROJECT_ID, FIREBASE_PRIVATE_KEY, FIREBASE_CLIENT_EMAIL, OPENAI_API_KEY
 
 # Levantar servicios
 cd ..
@@ -153,14 +154,20 @@ Una vez desplegado:
 
 ## 📁 Archivos Importantes NO Subidos a GitHub
 
-Estos archivos están en tu máquina local y debes copiarlos manualmente al servidor:
+Estos archivos están en tu máquina local y debes configurarlos en el servidor:
 
-1. **backend/.env** - Variables de entorno con credenciales reales
-2. **backend/firebase-adminsdk.json** - Service account de Firebase
-3. **.env.local** - Configuración Firebase frontend
-4. **backend/data/legislacion/*.pdf** - 3 PDFs de legislación (3.8 MB)
+1. **backend/.env** - Variables de entorno con credenciales reales (usar .env.example como template)
+2. **backend/firebase-adminsdk.json** - Service account de Firebase (NO subido por seguridad)
+3. **.env.local** - Configuración Firebase frontend (usar .env.local.example como template)
 
-**IMPORTANTE:** Guarda estos archivos en un lugar seguro. Los necesitarás para el deploy.
+## ✅ Archivos YA Incluidos en GitHub
+
+1. **backend/data/legislacion/*.pdf** - 3 PDFs de legislación (3.8 MB) ✅ Subidos al repo
+   - Codigo_de_procedimiento_penal.pdf (1.9 MB)
+   - codigo-penal.pdf (836 KB)
+   - codigo-policia.pdf (1.1 MB)
+
+**IMPORTANTE:** Solo necesitas configurar los archivos .env con tus credenciales. Los PDFs ya vienen en el clone.
 
 ---
 
