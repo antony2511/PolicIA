@@ -1,0 +1,7 @@
+{
+  "name": "PolicIA AI",
+  "description": "Asistente inteligente para la Policía Nacional, facilitando consultas de procedimientos, códigos y redacción de informes.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}

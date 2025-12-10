@@ -1,0 +1,35 @@
+{
+  "name": "policia-ai-backend",
+  "version": "1.0.0",
+  "description": "Backend API para PolicIA - Asistente Policial IA",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "ingest": "node scripts/ingest-legislacion.js"
+  },
+  "keywords": [
+    "policia",
+    "ia",
+    "api",
+    "rag",
+    "chromadb"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "firebase-admin": "^12.0.0",
+    "chromadb": "^1.8.1",
+    "openai": "^4.28.0",
+    "pdf-parse": "^1.1.1",
+    "multer": "^1.4.5-lts.1",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}

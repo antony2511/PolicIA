@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  # ChromaDB - Base de datos vectorial
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: policia-chromadb
+    ports:
+      - "8000:8000"
+    volumes:
+      - chromadb_data:/chroma/chroma
+    environment:
+      - IS_PERSISTENT=TRUE
+      - ANONYMIZED_TELEMETRY=FALSE
+    restart: unless-stopped
+
+  # Backend API
+  backend:
+    build: ./backend
+    container_name: policia-backend
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+      - CHROMA_HOST=http://chromadb:8000
+      - CHROMA_COLLECTION=legislacion_colombiana
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    depends_on:
+      - chromadb
+    restart: unless-stopped
+    command: npm start
+
+  # Frontend (opcional - para servir en producción)
+  # Si prefieres usar Vercel/Netlify, puedes comentar esta sección
+  frontend:
+    image: node:18-alpine
+    container_name: policia-frontend
+    working_dir: /app
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: sh -c "npm install && npm run dev -- --host"
+    restart: unless-stopped
+
+volumes:
+  chromadb_data:
+    driver: local

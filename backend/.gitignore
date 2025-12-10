@@ -1,0 +1,8 @@
+node_modules/
+.env
+*.log
+.DS_Store
+database/chromadb/*
+!database/chromadb/.gitkeep
+data/legislacion/*.pdf
+firebase-adminsdk.json
